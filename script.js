@@ -43,7 +43,7 @@ function tictactoe(event) {
 
   // Check for win
   if (checkWin(currSymbol)) {
-    message.textContent = `${currPlayer}, congratulations you won!`;
+    message.textContent = `${currPlayer} congratulations you won!`;
     gameOver = true;
     return;
   }
