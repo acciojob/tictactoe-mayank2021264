@@ -28,7 +28,7 @@ form.addEventListener('submit', function(e) {
 
   currPlayer = p1;
   currSymbol = 'O';
-  message.textContent = `${p1}, you're up!`;
+  message.textContent = `${p1}, you're up`;
 });
 
 // Handle cell clicks
@@ -43,7 +43,7 @@ function tictactoe(event) {
 
   // Check for win
   if (checkWin(currSymbol)) {
-    message.textContent = `${currPlayer} wins!`;
+    message.textContent = `${currPlayer}, congratulations you won!`;
     gameOver = true;
     return;
   }
@@ -58,12 +58,12 @@ function tictactoe(event) {
   // Switch turns
   if (currPlayer === p1) {
     currPlayer = p2;
-    currSymbol = 'X';
+    currSymbol = 'x';
   } else {
     currPlayer = p1;
-    currSymbol = 'O';
+    currSymbol = 'o';
   }
-  message.textContent = `${currPlayer}, you're up!`;
+  message.textContent = `${currPlayer}, you're up`;
 }
 
 // Check win
