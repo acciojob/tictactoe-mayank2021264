@@ -17,6 +17,7 @@ const winCombos = [
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
+
   p1 = document.getElementById('player1').value;
   p2 = document.getElementById('player2').value;
 
@@ -24,7 +25,8 @@ form.addEventListener('submit', function(e) {
   game.style.display = 'block';
 
   currPlayer = p1;
-  currSymbol = 'x'; // Player1 starts with x
+  currSymbol = 'x';
+
   message.textContent = `${p1}, you're up`;
 });
 
@@ -35,18 +37,21 @@ function tictactoe(event) {
 
   cell.textContent = currSymbol;
 
+  // check win
   if (checkWin(currSymbol)) {
-    message.textContent = `${currPlayer} wins!`;
+    message.textContent = `${currPlayer} congratulations you won!`;
     gameOver = true;
     return;
   }
 
+  // check draw
   if (isDraw()) {
     message.textContent = "It's a draw!";
     gameOver = true;
     return;
   }
 
+  // switch player
   if (currPlayer === p1) {
     currPlayer = p2;
     currSymbol = 'o';
@@ -54,12 +59,15 @@ function tictactoe(event) {
     currPlayer = p1;
     currSymbol = 'x';
   }
+
   message.textContent = `${currPlayer}, you're up`;
 }
 
 function checkWin(symbol) {
   return winCombos.some(combo => {
-    return combo.every(index => cells[index].textContent === symbol);
+    return combo.every(index => {
+      return document.getElementById(index + 1).textContent === symbol;
+    });
   });
 }
 
@@ -67,6 +75,7 @@ function isDraw() {
   return [...cells].every(cell => cell.textContent !== '');
 }
 
+// attach listeners
 cells.forEach(cell => {
   cell.addEventListener('click', tictactoe);
 });
